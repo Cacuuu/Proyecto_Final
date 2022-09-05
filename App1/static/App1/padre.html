@@ -29,7 +29,7 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#about">Estudios</a></li>
+                        <li class="nav-item"><a class="nav-brand" href="{% url 'estudios.html' %} ">Estudios</a></li>
                         <li class="nav-item"><a class="nav-link" href="#services">Experiencia</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
@@ -59,7 +59,7 @@
             {% block content %}
 
             {% endblock %}
-        <section class="page-section bg-primary" id="about">
+        <section class="page-section bg-primary" id="about" enctype="multipart/form-data">
             <div class="container px-8 px-lg-8">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     {% block foto %}
