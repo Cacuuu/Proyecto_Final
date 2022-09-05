@@ -9,3 +9,11 @@ def Inicio(request):
 def facundonunez(request):
 
     return render(request, 'facundonunez.html')
+
+def facundocoquet(request):
+
+    return render(request, 'facundocoquet.html')
+
+def federicomaguera(request):
+
+    return render(request, 'federicomaguera.html')
