@@ -3,6 +3,8 @@ from django.shortcuts import render
 
 from App1.forms import estudiosform
 from App1.models import Estudios
+from App1.forms import experienciaform
+from App1.models import Experiencia
 # Create your views here.
 
 def Inicio(request):
@@ -44,6 +46,33 @@ def estudios(request):
 
     else:
 
-        formulario = estudiosform()
+        form = estudiosform()
 
-    return render(request, 'estudios.html', {"formulario":formulario})
+    return render(request, 'estudios.html', {"formulario":form})
+
+def experiencia(request):
+
+    if request.method == 'POST':
+
+        form = experienciaform(request.POST)
+
+        print(form)
+
+        if form.is_valid:
+
+            data= form.cleaned_data
+
+            experiencia1 = Experiencia(experiencia=data['experiencia'],
+            puesto=data['puesto'],
+            empresa=data['empresa'],
+            año_comienzo=data['año_comienzo'],
+            año_finalizacion=data['año_finalizacion'],)
+            experiencia1.save() 
+
+            return render(request, "Inicio.html")
+
+    else:
+
+        form = experienciaform()
+
+    return render(request, 'estudios.html', {"formulario":form})
