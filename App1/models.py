@@ -11,29 +11,28 @@ class Persona(models.Model):
 
 
 class Estudios(models.Model):
-    persona= Persona()
+    persona= models.CharField(max_length=30,default='SOME STRING')
     titulo= models.CharField(max_length=30)
     institucion= models.CharField(max_length=30)
     año_comienzo= models.DateField()
     año_finalizacion= models.DateField()
 
 class Experiencia(models.Model):
-    persona= Persona()
+    persona= models.CharField(max_length=30,default='SOME STRING')
     puesto= models.CharField(max_length=30)
     empresa= models.CharField(max_length=30)
     año_comienzo= models.DateField()
     año_finalizacion= models.DateField()
 
 class Portfolio(models.Model):
-    persona= Persona()
-    proyecto= models.CharField(max_length=30)
+    persona= models.CharField(max_length=30,default='SOME STRING')
+    proyecto= models.URLField()
     habilidades= models.CharField(max_length=30)
     año= models.DateField()
 
 class Contacto(models.Model):
-    persona= Persona()
     nombre= models.CharField(max_length=30)
     apellido= models.CharField(max_length=30)
     email= models.EmailField()
     numero= models.BigIntegerField()
-    mensaje= models.CharField(max_length=255)
+    instagram= models.CharField(max_length=30,default='SOME STRING')
