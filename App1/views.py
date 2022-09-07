@@ -1,10 +1,13 @@
 from typing import Dict
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from App1.forms import estudiosform
 from App1.models import Estudios
 from App1.forms import experienciaform
 from App1.models import Experiencia
+from App1.forms import portfolioform
+from App1.models import Portfolio
 # Create your views here.
 
 def Inicio(request):
@@ -24,6 +27,9 @@ def federicomaguera(request):
     return render(request, 'federicomaguera.html')
 
 def estudios(request):
+
+    estudios= Estudios.objects.all()
+
 
     if request.method == 'POST':
 
@@ -46,9 +52,12 @@ def estudios(request):
 
     else:
 
+        estudios= Estudios.objects.all()
+
         form = estudiosform()
 
-    return render(request, 'estudios.html', {"formulario":form})
+    return render(request, 'estudios.html', {"formulario":form,'estudios': estudios})
+    
 
 def experiencia(request):
 
@@ -75,4 +84,41 @@ def experiencia(request):
 
         form = experienciaform()
 
-    return render(request, 'estudios.html', {"formulario":form})
+    return render(request, 'experiencia.html', {"formulario":form})
+
+def portafolio(request):
+
+    if request.method == 'POST':
+
+        form = portfolioform(request.POST)
+
+        print(form)
+
+        if form.is_valid:
+
+            data= form.cleaned_data
+
+            persona = Portfolio(persona=data['persona'],
+            proyecto=data['proyecto'],
+            habilidades=data['habilidades'],
+            año = data['año'])
+
+            persona.save() 
+
+            return render(request, "Inicio.html")
+
+    else:
+
+        form = portfolioform()
+
+    return render(request, 'portfolio.html', {"formulario":form})
+
+def busquedaexperiencia(request):
+
+    return render(request, "busquedaexperiencia.html")
+
+def buscar(request):
+
+    respuesta= f"Estoy buscando el puesto {request.GET['puesto']}"
+
+    return HttpResponse(respuesta)

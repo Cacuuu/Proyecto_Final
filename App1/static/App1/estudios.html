@@ -1,14 +1,72 @@
 {% extends 'padre.html' %}
 {% load static %}
-{% block formulario %}
-<form method="POST" action="w4">
+
+{%block estudios%}
+<style>
+    .tercera:hover .display{display:block;}
+    .epp{color: white;text-align: center;margin-bottom: 30px;margin-top: 15px;font-size: larger;}
+    .primera{margin-left: 26.5%}
+    .segunda{background-color: white; width:600px;}
+    .tercera{margin-top: 3%;text-align:center;width:600px;margin-left: 26.5%;}
+    .cuarta{font-size: large;margin-bottom: 1%;margin-top: 2%;}
+    span{font-size: x-large;}
+    table.default{border: solid;border-radius: 1%; text-align: center;font-size:smaller;background-color: white;}
+    tr.default{border-bottom: 0.5px solid;}
+    .w3{margin-left: 10%;}
+    .display{display: none;}
+    .boton{border:none;padding:8px}
+</style>
+
+<div >
+    <div class="epp">Estudios por persona
+    </div>
+<section class="primera">
+
+    <table class="default" >
+        <thead>
+            <tr class="default">
+                <td>Nombre</td>
+                <td>Apellido</td>
+                <td>Edad</td>
+                <td>Relacion</td>
+                <td>Nacimiento</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in estudios %}
+            <tr class="default">
+                <td>{{x.persona}}</td>
+                <td>{{x.titulo}}</td>
+                <td>{{x.institucion}}</td>
+                <td>{{x.año_comienzo}}</td>
+                <td>{{x.año_finalizacion}}</td>
+            </tr>    
+            {%endfor%}
+        </tbody>
+    </table>
+</section>
+</div>
+
+<div class="tercera"> 
+    <button class="boton">
+         CREAR ESTUDIOS ↓  
+    </button>
+
+<section class="segunda">
+<form method="POST" action="/estudios/">
     {% csrf_token %}
+    <div class="display">
     <table class="w3">
         <td>
             {{ formulario.as_table }}
         </td>
         
     </table>
-    <input type="submit" value="Enviar" />
-{% endblock %}
+    <input type="submit" value="Enviar" class="cuarta"/>
+</div>
 </form>
+</section>
+</div>
+
+
+{% endblock %}

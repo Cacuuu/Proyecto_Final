@@ -1,0 +1,20 @@
+{% extends 'padre.html' %}
+{% load static %}
+<ul>
+{% for f in Portfolio %}
+    <li>{{f.nombre}}</li>
+{% endfor %}
+</ul>
+
+{% block formulario %}
+<form method="POST" action="w4">
+    {% csrf_token %}
+    <table class="w3">
+        <td>
+            <h3 style="color:red;">{{ formulario.as_table }}</h3>
+        </td>
+        
+    </table>
+    <input type="submit" value="Enviar" />
+{% endblock %}
+</form>

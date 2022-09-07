@@ -324,10 +324,9 @@ tbody,
 tfoot,
 tr,
 td,
-th {
-  border-color: inherit;
-  border-style: solid;
-  border-width: 0;
+th .default{
+  border-color: black;
+  border-width: 0.5;
 }
 
 label {
@@ -11458,6 +11457,9 @@ table .formasss{
   background-size: 0ex;
 
 }
-.w3 {
-  background-color: transparent
+table #w3 {
+  background-color: transparent;
+  box-sizing: content-box;
+  size: 1px;
+  
 }

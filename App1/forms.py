@@ -13,4 +13,10 @@ class experienciaform(forms.Form):
     empresa= forms.CharField(max_length=30)
     año_comienzo= forms.DateField()
     año_finalizacion= forms.DateField()
+
+class portfolioform(forms.Form):
+    persona= forms.CharField(max_length=30)
+    proyecto= forms.URLField()
+    habilidades= forms.CharField(max_length=30)
+    año= forms.DateField()
     

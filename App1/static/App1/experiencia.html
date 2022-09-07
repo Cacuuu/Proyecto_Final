@@ -1,0 +1,37 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block estudios %}
+
+<style>
+    .primera{text-align: center;color:white}
+    .segunda{margin-top: 10%;color:white}
+</style>
+
+<section class="primera">
+<form method="POST" action="w4">
+    {% csrf_token %}
+    <table class="w3">
+        <td>
+            {{ formulario.as_table }}
+        </td>
+        
+    </table>
+    <input type="submit" value="Enviar" />
+</form>
+</section>
+    
+<div class="segunda">
+    Buscar puesto:
+</div>
+
+<div >
+    <form action="buscar/" method="get">
+
+        <input type="text" name="puesto" id="puesto">
+    
+        <input type="submit" value="Enviar" />
+    
+    
+    </form>
+</div>
+{% endblock %}
