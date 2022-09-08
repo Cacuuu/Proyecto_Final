@@ -56,7 +56,7 @@ ROOT_URLCONF = 'Proyecto_Final.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/nfacu/repositorio1/Proyecto_Final/App1/static/App1'],
+        'DIRS': ['C:/Users/Nathan Drake/Desktop/Proyecto_Final/App1/static/App1'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
