@@ -26,10 +26,11 @@
         <thead>
             <tr class="default">
                 <td>Nombre</td>
-                <td>Apellido</td>
-                <td>Edad</td>
-                <td>Relacion</td>
-                <td>Nacimiento</td>
+                <td>Titulo</td>
+                <td>Institucion</td>
+                <td>Año_Comienzo</td>
+                <td>Año_Finalizacion</td>
+                <td>Eliminar</td>
             </tr>
         </thead>
         <tbody>
@@ -40,6 +41,9 @@
                 <td>{{x.institucion}}</td>
                 <td>{{x.año_comienzo}}</td>
                 <td>{{x.año_finalizacion}}</td>
+                <td><button><a href="{% url 'eliminar' x.titulo %}">Eliminar</a></button></td>
+
+
             </tr>    
             {%endfor%}
         </tbody>

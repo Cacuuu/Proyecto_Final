@@ -3,18 +3,72 @@
 {% block estudios %}
 
 <style>
-    .primera{text-align: center;color:white}
-    .segunda{margin-top: 10%;color:white}
+    .tercera:hover .display{display:block;background-color: white;}
+    .primera{text-align: center;;margin-left: 26.5%}
+    .segunda{color:white;margin-left: 26.5%;}
+    .tercera{margin-top: 3%;text-align:center;width:600px;margin-left: 26.5%;}
     p{color: white;}
-</style>
+    .epp{color: white;text-align: center;margin-bottom: 30px;margin-top: 15px;font-size: larger;}
+    table.default{border-right:1px;border: solid;border-radius: 1%; text-align: center;font-size:smaller;background-color: white;}
+    tr.default{border-bottom: 0.5px solid;}
+    .boton{border:none;padding:8px}
+    .display{display: none;}
+    #puesto{margin-left: 26.6%;}
 
-<div class="titulo">
-    <p>Crear puesto</p>
+    </style>
+
+<div >
+    <div class="epp">Experiencia por persona
+    </div>
+    <div class="segunda">
+        Buscar puesto:
+    </div>
+    <div class="buscar">
+        <form action="buscar/" method="get">
+    
+            <input type="text" name="puesto" id="puesto">
+        
+            <input type="submit" value="Enviar" />
+        
+        
+        </form>
+    </div>
+<section class="primera">
+
+    <table class="default" >
+        <thead>
+            <tr class="default">
+                <td>Persona</td>
+                <td>Puesto</td>
+                <td>Empresa</td>
+                <td>Año_Comienzo</td>
+                <td>Año_finalizacion</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in Experiencia %}
+            <tr class="default">
+                <td>{{x.persona}}</td>
+                <td>{{x.puesto}}</td>
+                <td>{{x.empresa}}</td>
+                <td>{{x.año_comienzo}}</td>
+                <td>{{x.año_finalizacion}}</td>
+            </tr>    
+            {%endfor%}
+        </tbody>
+    </table>
+</section>
 </div>
 
+<div class="tercera"> 
+    <button class="boton">
+         CREAR PUESTO ↓  
+    </button>
+
 <section class="primera">
-<form method="POST" action="w4">
+<form method="POST" action="/experiencia/">
     {% csrf_token %}
+    <div class ="display">
     <table class="w3">
         <td>
             {{ formulario.as_table }}
@@ -22,21 +76,8 @@
         
     </table>
     <input type="submit" value="Enviar" />
+</div>
 </form>
 </section>
-    
-<div class="segunda">
-    Buscar puesto:
-</div>
 
-<div >
-    <form action="buscar/" method="get">
-
-        <input type="text" name="puesto" id="puesto">
-    
-        <input type="submit" value="Enviar" />
-    
-    
-    </form>
-</div>
 {% endblock %}

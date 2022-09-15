@@ -1,6 +1,8 @@
+from tkinter import E
 from typing import Dict
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from App1.forms import estudiosform
 from App1.models import Estudios
@@ -51,15 +53,18 @@ def estudios(request):
             return render(request, "Inicio.html")
 
     else:
-
-        estudios= Estudios.objects.all()
-
+        
         form = estudiosform()
+        estudios= Estudios.objects.all()
+        contexto= {"formulario":form,'estudios': estudios}
 
-    return render(request, 'estudios.html', {"formulario":form,'estudios': estudios})
+
+    return render(request, 'estudios.html',contexto)
     
 
 def experiencia(request):
+
+    exp= Experiencia.objects.all()
 
     if request.method == 'POST':
 
@@ -77,14 +82,17 @@ def experiencia(request):
             año_comienzo=data['año_comienzo'],
             año_finalizacion=data['año_finalizacion'],)
             experiencia1.save() 
-
+            
             return render(request, "Inicio.html")
 
     else:
 
+        exp= Experiencia.objects.all()
         form = experienciaform()
-
-    return render(request, 'experiencia.html', {"formulario":form})
+        contexto= {"formulario":form, "Experiencia":exp}
+        
+        
+    return render(request, 'experiencia.html',contexto)
 
 def portafolio(request):
 
@@ -122,3 +130,13 @@ def buscar(request):
     respuesta= f"Estoy buscando el puesto {request.GET['puesto']}"
 
     return HttpResponse(respuesta)
+
+def eliminar(request,titulo):
+    estudio= Estudios.objects.get(titulo=titulo)
+    estudio.delete()
+
+    estudios = Estudios.objects.all()
+
+    contexto = {"estudios":estudios}
+
+    return render(request, "estudios.html", contexto)
