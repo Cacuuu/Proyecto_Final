@@ -1,8 +1,8 @@
-from tkinter import E
-from typing import Dict
+from ast import Del
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from App1.forms import estudiosform
 from App1.models import Estudios
@@ -12,87 +12,64 @@ from App1.forms import portfolioform
 from App1.models import Portfolio
 # Create your views here.
 
-def Inicio(request):
+def inicio(request):
 
     return render(request, 'Inicio.html')
 
-def facundonunez(request):
+def facundo_nunez(request):
 
     return render(request, 'facundonunez.html')
 
-def facundocoquet(request):
+def facundo_coquet(request):
 
     return render(request, 'facundocoquet.html')
 
-def federicomaguera(request):
+def federico_maguera(request):
 
     return render(request, 'federicomaguera.html')
 
-def estudios(request):
-
-    estudios= Estudios.objects.all()
-
-
-    if request.method == 'POST':
-
-        form = estudiosform(request.POST)
-
-        print(form)
-
-        if form.is_valid:
-
-            data= form.cleaned_data
-
-            estudio1= Estudios(persona=data['persona'],
-            titulo=data['titulo'],
-            institucion=data['institucion'],
-            año_comienzo=data['año_comienzo'],
-            año_finalizacion=data['año_finalizacion'],)
-            estudio1.save() 
-
-            return render(request, "Inicio.html")
-
-    else:
-        
-        form = estudiosform()
-        estudios= Estudios.objects.all()
-        contexto= {"formulario":form,'estudios': estudios}
-
-
-    return render(request, 'estudios.html',contexto)
+class EstudiosList(ListView):
     
+    model= Estudios
+    template_name = 'estudios.html'
 
-def experiencia(request):
+class EstudioCreate(CreateView):
+    
+    model = Estudios
+    success_url= reverse_lazy('estudios')
+    template_name = 'estudios.html'
+    fields = ['persona','titulo','institucion','año_comienzo','año_finalizacion']
 
-    exp= Experiencia.objects.all()
+class EstudioEdit(UpdateView):
+    model = Estudios
+    success_url= reverse_lazy('estudios.html')
+    fields = ['persona','titulo','institucion','año_comienzo','año_finalizacion']
 
-    if request.method == 'POST':
+class EstudioDelete(DeleteView):
+    model= Estudios
+    success_url = reverse_lazy('estudios.html')
 
-        form = experienciaform(request.POST)
+class ExperienciaList(ListView):
 
-        print(form)
+    model = Experiencia
+    template_name = 'experiencia.html'
 
-        if form.is_valid:
+class ExperienciaCreate(CreateView):
+    
+    model = Experiencia
+    success_url= reverse_lazy('experiencia.html')
+    fields = ['persona','puesto','empresa','año_comienzo','año_finalizacion']
 
-            data= form.cleaned_data
+class ExperienciaUpdate(UpdateView):
+    model = Experiencia
+    success_url= reverse_lazy('experiencia.html')
+    fields = ['persona','puesto','empresa','año_comienzo','año_finalizacion']
 
-            experiencia1 = Experiencia(experiencia=data['experiencia'],
-            puesto=data['puesto'],
-            empresa=data['empresa'],
-            año_comienzo=data['año_comienzo'],
-            año_finalizacion=data['año_finalizacion'],)
-            experiencia1.save() 
-            
-            return render(request, "Inicio.html")
+class ExperienciaDelete(DeleteView):
 
-    else:
+    model= Experiencia
+    success_url = reverse_lazy('experiencia.html')
 
-        exp= Experiencia.objects.all()
-        form = experienciaform()
-        contexto= {"formulario":form, "Experiencia":exp}
-        
-        
-    return render(request, 'experiencia.html',contexto)
 
 def portafolio(request):
 
@@ -140,3 +117,62 @@ def eliminar(request,titulo):
     contexto = {"estudios":estudios}
 
     return render(request, "estudios.html", contexto)
+
+def eliminarexp(request,id):
+    
+    experiencia = Experiencia.objects.get(id=id)
+    experiencia.delete()
+
+    exp = Experiencia.objects.all()
+
+    contexto= {"exp",exp}
+
+    return render(request,'experiencia.html',contexto)
+
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login,logout,authenticate
+
+def login_request(request):
+
+    if request.method == "POST":
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+
+            user = authenticate(username = username, password=password)
+
+            if user is not None:
+                login(request, user)
+
+                return render(request,"inicio.html", {"Mensaje":f"Bienvenido {username}"})
+
+            else:
+                return render(request,"inicio.html", {"Mensaje":"Error, datos incorrectos"})
+        
+        else:
+
+            return render(request, "inicio.html", {"Mensaje":"Error, formulario erróneo"})
+
+    form = AuthenticationForm()
+
+    return render(request,"login.html", {"form":form})
+
+from django.contrib.auth.forms import UserCreationForm
+
+def register(request):
+
+    if request.method == "POST":
+
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            form.save()
+            return render(request, "inicio.html", {"mensaje": "Usuario Creado."})
+
+    else:
+        form= UserCreationForm()
+
+    return render(request, "register.html", {"form":form})

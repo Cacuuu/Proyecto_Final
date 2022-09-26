@@ -7,20 +7,25 @@
     .primera{text-align: center;;margin-left: 26.5%}
     .segunda{color:white;margin-left: 26.5%;}
     .tercera{margin-top: 3%;text-align:center;width:600px;margin-left: 26.5%;}
-    p{color: white;}
+    p{color: black;}
     .epp{color: white;text-align: center;margin-bottom: 30px;margin-top: 15px;font-size: larger;}
     table.default{border-right:1px;border: solid;border-radius: 1%; text-align: center;font-size:smaller;background-color: white;}
     tr.default{border-bottom: 0.5px solid;}
     .boton{border:none;padding:8px}
-    .display{display: none;}
+    .display{display: none;background-color: white;margin-right: 57%;border: none;}
     #puesto{margin-left: 26.6%;}
+    .div:hover .display{display: block;margin-left: 28.2%;margin-top: -1.85%;}
+    .mas{margin-left: 26.5%;border:none;}
+    a{color:black;text-decoration: none;}
+    a:hover{color: red;}
+    
 
     </style>
 
 <div >
     <div class="epp">Experiencia por persona
     </div>
-    <div class="segunda">
+<!--     <div class="segunda">
         Buscar puesto:
     </div>
     <div class="buscar">
@@ -32,7 +37,7 @@
         
         
         </form>
-    </div>
+    </div> -->
 <section class="primera">
 
     <table class="default" >
@@ -46,13 +51,16 @@
             </tr>
         </thead>
         <tbody>
-            {% for x in Experiencia %}
+            {% for x in object_list %}
             <tr class="default">
                 <td>{{x.persona}}</td>
                 <td>{{x.puesto}}</td>
                 <td>{{x.empresa}}</td>
                 <td>{{x.año_comienzo}}</td>
                 <td>{{x.año_finalizacion}}</td>
+                <td><a href="{% url 'experiencia-edit' x.pk %}">Editar</a></td>
+                <td><a href="{% url 'experiencia-eliminar' x.id %}">Eliminar</a></td>
+
             </tr>    
             {%endfor%}
         </tbody>
@@ -60,24 +68,22 @@
 </section>
 </div>
 
-<div class="tercera"> 
-    <button class="boton">
-         CREAR PUESTO ↓  
+<div class="tercera">  
+    <button class="boton"><a href="{% url 'experiencia-create' %}">CREAR PUESTO + </a>
+          
     </button>
-
-<section class="primera">
-<form method="POST" action="/experiencia/">
+<!-- <section class="primera">
+<form method="POST" action="">
     {% csrf_token %}
     <div class ="display">
     <table class="w3">
         <td>
-            {{ formulario.as_table }}
+            {{ form.as_table }}
         </td>
         
     </table>
     <input type="submit" value="Enviar" />
 </div>
 </form>
-</section>
-
+</section>  -->
 {% endblock %}

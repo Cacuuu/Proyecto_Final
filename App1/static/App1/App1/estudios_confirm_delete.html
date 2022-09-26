@@ -1,0 +1,10 @@
+{% extends 'padre.html' %}
+
+{% block estudios %}
+    <form method="POST">
+        {% csrf_token %}
+        ¿Estás seguro que deseas borrar el curso "{{object.titulo}}"?
+        <input type="submit" value="Submit"/>
+    </form>
+
+{%endblock%}

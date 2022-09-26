@@ -1,0 +1,13 @@
+{% extends 'estudios.html' %}
+{% load static %}
+
+{% block create %}
+<body>
+    <form action="" method="post">
+        {%csrf_token%}
+
+        {{form.as_p}}
+
+    </form>
+</body>
+{%endblock%}
