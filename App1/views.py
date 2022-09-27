@@ -16,6 +16,10 @@ def inicio(request):
 
     return render(request, 'Inicio.html')
 
+def Aboutus(request):
+
+    return render(request, "Aboutus.html")
+
 def facundo_nunez(request):
 
     return render(request, 'facundonunez.html')
