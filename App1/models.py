@@ -36,3 +36,12 @@ class Contacto(models.Model):
     email= models.EmailField()
     numero= models.BigIntegerField()
     instagram= models.CharField(max_length=30,default='SOME STRING')
+
+class Entrada(models.Model):
+    nombre = models.CharField(max_length=50)
+    contenido = models.CharField(max_length=400)
+    imagen = models.URLField()
+    autor = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nombre

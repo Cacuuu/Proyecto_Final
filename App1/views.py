@@ -8,7 +8,12 @@ from App1.forms import experienciaform
 from App1.models import Experiencia
 from App1.forms import portfolioform
 from App1.models import Portfolio
+from App1.models import Entrada
 # Create your views here.
+
+def home (request):
+    articulos = Entrada.objects.all()
+    return render(request,"bienvenida.html",{"articulos":articulos})
 
 def Inicio(request):
 

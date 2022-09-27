@@ -12,5 +12,5 @@ urlpatterns = [
     path('portfolio', portafolio, name="portfolio.html"),
     path('busquedaexperiencia', busquedaexperiencia, name="busquedaexperiencia"),
     path('buscar/',buscar),
-
+    path('blog/', home, name="bienvenida.html"),
 ]

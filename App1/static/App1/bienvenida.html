@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Prueba blog</h1>
+    <section class="blog">
+        {% for elemento in articulos %}
+            <article>
+                <h3>{{elemento.nombre}}</h3>
+                <p>{{elemento.contenido}}</p>
+                <img src="{{elemento.imagen}}" alt="imagen blog">
+                <footer>{{elemento.autor}}</footer>
+            </article>
+        {%endfor%}
+    </section>
+</body>
+</html>

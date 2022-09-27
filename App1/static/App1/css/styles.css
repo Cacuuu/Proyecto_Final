@@ -11463,3 +11463,10 @@ table #w3 {
   size: 1px;
   
 }
+
+.blog {
+  border:0;
+  box-sizing: border-box;
+  margin:0;
+  padding: 0 ;
+}
