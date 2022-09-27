@@ -40,8 +40,7 @@ class EstudiosList(ListView):
 class EstudioCreate(CreateView):
     
     model = Estudios
-    success_url= reverse_lazy('estudios')
-    template_name = 'estudios.html'
+    success_url= reverse_lazy('estudios.html')
     fields = ['persona','titulo','institucion','año_comienzo','año_finalizacion']
 
 class EstudioEdit(UpdateView):
@@ -56,6 +55,7 @@ class EstudioDelete(DeleteView):
 class ExperienciaList(ListView):
 
     model = Experiencia
+
     template_name = 'experiencia.html'
 
 class ExperienciaCreate(CreateView):
@@ -136,32 +136,6 @@ def eliminarexp(request,id):
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,logout,authenticate
 
-def login_request(request):
-
-    if request.method == "POST":
-        form = AuthenticationForm(request, data = request.POST)
-
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-
-            user = authenticate(username = username, password=password)
-
-            if user is not None:
-                login(request, user)
-
-                return render(request,"inicio.html", {"Mensaje":f"Bienvenido {username}"})
-
-            else:
-                return render(request,"inicio.html", {"Mensaje":"Error, datos incorrectos"})
-        
-        else:
-
-            return render(request, "inicio.html", {"Mensaje":"Error, formulario erróneo"})
-
-    form = AuthenticationForm()
-
-    return render(request,"login.html", {"form":form})
 
 from django.contrib.auth.forms import UserCreationForm
 
@@ -180,3 +154,13 @@ def register(request):
         form= UserCreationForm()
 
     return render(request, "register.html", {"form":form})
+
+from django.contrib.auth.views import LoginView,LogoutView
+
+class AdminLogin(LoginView):
+    template_name = 'login.html'
+    success_url = reverse_lazy('Inicio.html')
+
+class AdminLogout(LogoutView):
+    template_name = 'logout.html'
+
