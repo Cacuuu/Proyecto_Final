@@ -1,0 +1,30 @@
+@charset "UTF-8";
+.blog {
+    border:0;
+    box-sizing: border-box;
+    margin:0;
+    padding: 0 ;
+}
+  
+@media only screen and (max-width: 500px){
+    .fotos{
+        width: 400px;
+        height: 400px;
+    }
+}
+  
+@media only screen and (max-width: 2500px){
+    .fotos{
+        width: 400px;
+        height: 400px;
+    }
+}
+
+#parrafoBlog{
+    font-family: 'PT Serif', serif;
+    font-size: 23px;
+    background-color: white;
+    min-width: min-content;
+    padding: 20px;
+}
+  

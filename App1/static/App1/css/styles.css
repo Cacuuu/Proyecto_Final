@@ -11470,3 +11470,17 @@ table #w3 {
   margin:0;
   padding: 0 ;
 }
+
+@media only screen and (max-width: 500px){
+  .fotos{
+      width: 400px;
+      height: 400px;
+  }
+}
+
+@media only screen and (max-width: 2500px){
+  .fotos{
+      width: 400px;
+      height: 400px;
+  }
+}
