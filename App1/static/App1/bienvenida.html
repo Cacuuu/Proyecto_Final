@@ -1,31 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-    {% load static %}
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap Icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-    <!-- SimpleLightbox plugin CSS-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{% static 'App1/css/stylesheetBlog' %}" rel="stylesheet" />
-    <title>Document</title>
+    <title>Blog</title>
+
+    {% load static %}
+    
+    <link rel="stylesheet" type= "text/css" href="{% static 'App1/css/stylesheetBlog.css' %}">
 </head>
 <body>
     <h1>Prueba blog</h1>
-    <section class="container blog body">
+    <section class="row container">
         {% for elemento in articulos %}
-            <article>
-                <h3>{{elemento.nombre}}</h3>
-                <p id="parrafoBlog">{{elemento.contenido}}</p>
-                <img src="{{elemento.imagen}}" alt="imagen blog" class="fotos">
-                <footer>{{elemento.autor}}</footer>
+            <article class="publicacion container">
+                <h3 class="titulos">{{elemento.nombre}}</h3>
+                <p class="parrafos col-12 col-xxl-8 my-auto">{{elemento.contenido}}</p>
+                <img class="imagenes col-12 col-xxl-4 mx-auto my-auto" src="{{elemento.imagen}}" alt="imagen blog">
+                <footer class="pie">{{elemento.autor}}</footer>
             </article>
         {%endfor%}
     </section>
