@@ -131,4 +131,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "img")
 
 LOGIN_REDIRECT_URL = 'Aboutus'
 LOGOUT_REDIRECT_URL = 'Inicio.html'
+LOGIN_URL = '/login/'
 

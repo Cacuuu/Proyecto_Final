@@ -1,8 +1,13 @@
+{%extends 'padre.html'%}
 {% load static %}
 {%block login%}
 
+<style>
+    .inicio{position: relative; top: 70px;}
+</style>
+
 <body>
-    <form action="" method="post">
+    <form class="inicio"action="" method="post">
         {% csrf_token %}
 
         {{form.as_p}}
