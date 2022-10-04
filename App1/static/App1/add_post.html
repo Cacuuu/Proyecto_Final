@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Añadir post de Blog</title>
+
+    {% load static %}
+    
+    <link rel="stylesheet" type= "text/css" href="{% static 'App1/css/stylesheetBlog.css' %}">
+</head>
+<body>
+    <article class="creacion container">
+    <h1>Añadir post de Blog</h1> <br/>
+    <form method="POST">
+        {%csrf_token %}
+        {{form.as_p}}<br/>
+        <button>Post</button>
+    </form>
+    </article>
+</body>
+</html>

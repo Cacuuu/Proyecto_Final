@@ -1,6 +1,9 @@
+from pdb import post_mortem
 from typing import Dict
 from django.http import HttpResponse
 from django.shortcuts import render
+
+
 
 from App1.forms import estudiosform
 from App1.models import Estudios
@@ -9,7 +12,13 @@ from App1.models import Experiencia
 from App1.forms import portfolioform
 from App1.models import Portfolio
 from App1.models import Entrada
+from App1.forms import Entradaform
 # Create your views here.
+
+def add_post (request):
+    context ={}
+    context['form']= Entradaform()
+    return render(request,"add_post.html", context)
 
 def home (request):
     articulos = Entrada.objects.all()

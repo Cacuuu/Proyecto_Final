@@ -20,3 +20,8 @@ class portfolioform(forms.Form):
     habilidades= forms.CharField(max_length=30)
     año= forms.DateField()
     
+class Entradaform(forms.Form):
+    nombre = forms.CharField(max_length=50)
+    contenido = forms.CharField(max_length=400)
+    imagen = forms.URLField()
+    autor = forms.CharField(max_length=50)

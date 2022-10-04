@@ -1,6 +1,7 @@
 from mailbox import NoSuchMailboxError
 from pyexpat import model
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -45,3 +46,6 @@ class Entrada(models.Model):
 
     def __str__(self):
         return self.nombre
+
+    def get_absolute_url(self): 
+        return reverse('home', args=(str(self.id)))
