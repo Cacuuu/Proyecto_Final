@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-
+from App1.forms import UserForm
 from App1.forms import estudiosform
 from App1.models import Estudios
 from App1.forms import experienciaform
@@ -148,26 +148,7 @@ def eliminarexp(request,id):
     return render(request,'experiencia.html',contexto)
 
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login,logout,authenticate
-
-
-from django.contrib.auth.forms import UserCreationForm
-
-def register(request):
-
-    if request.method == "POST":
-
-        form = UserCreationForm(request.POST)
-
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            form.save()
-            return render(request, "inicio.html", {"mensaje": "Usuario Creado."})
-
-    else:
-        form= UserCreationForm()
-
-    return render(request, "register.html", {"form":form})
+from django.shortcuts import render  
 
 from django.contrib.auth.views import LoginView,LogoutView
 
@@ -178,3 +159,15 @@ class AdminLogin(LoginView):
 class AdminLogout(LogoutView):
     template_name = 'logout.html'
 
+def register(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('Inicio.html')
+
+    else:
+        form = UserForm()
+
+
+    return render(request, 'register.html', {'form': form})

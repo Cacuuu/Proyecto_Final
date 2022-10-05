@@ -23,8 +23,8 @@ urlpatterns = [
     path('busquedaexperiencia/', busquedaexperiencia, name="busquedaexperiencia"),
     path('buscar/',buscar),
     path('login/', AdminLogin.as_view(), name = "login"),
-    path('logout/', AdminLogout.as_view(), name = "logout")
-
+    path('logout/', AdminLogout.as_view(), name = "logout"),
+    path('register/', register, name="register")
 
 ]
 

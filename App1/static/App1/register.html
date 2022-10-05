@@ -1,14 +1,35 @@
 {% extends 'padre.html' %}
 {% load static %}
+
+{%block title%}
+    <title>
+        Registrate
+    </title>
+{%endblock%}
+
 {%block login%}
 
-<body>
+<style>
+    .uno{background-color: #555555;}
+    .Registro{position: fixed; top: 90px;left: 30%;}
+    .user{font-size: xx-large;}
+    
+</style>
+<section class="uno">
+<head>
+    <p class="user">
+        Crea tu usuario:
+    </p>
+</head>
+</section>
+
+<body class="Registro" id="uno">
     <form action="" method="post">
         {% csrf_token %}
 
         {{form.as_p}}
 
-        <button type="submit">Registrate</button>
+        <input type="submit" value="Registrate"/>
     </form>
 </body>
 
